@@ -44,25 +44,37 @@ if not os.path.isfile('UBS_Answers.txt'):	# File missing
 		except IndexError:
 			print "Last name not entered. Please try again."
 		else:
-			# Write to text file.
+			UBS_Answers.write(Donor_Name[0] + " " + Donor_Name[1] + "\n")
 			break
 	
 	while True:
 		Gender = int(raw_input("Enter (1) for Male, (2) for Female: "))	# 1 or 2 only
-		print type(Gender)
-		print Gender
 		if Gender == 1 or Gender == 2:
-			print "Good Job!" 
-			# Record gender choice and break.
+			Gender = str(Gender)
+			UBS_Answers.write(Gender + "\n")
 			break
 		else:
-			print "You goofed!"
+			print "Please the number 1 or 2 ONLY."
 
 	while True:
-		print 
 		DOB = raw_input("Enter your Date of Birth MM/DD/YYYY: ").split("/")		# Verify the date and then store it.
-		
-		break
+		try:
+			DOB[2]
+		except:
+			print "Error, Try entering your birthday again"
+		DOB = [int(i) for i in DOB]
+		if 0 < (DOB[0]) < 13:
+			if 0 < DOB[1] < 32:
+				if 1920 < DOB[2] < 2010:
+					DOB = str(DOB).strip('[]')
+					UBS_Answers.write(DOB + "\n")
+					break
+				else:
+					print "Year not valid, Try entering your birthday again."
+			else:
+				print "Day not valid, Try entering your birthday again."
+		else:
+			print "Month not valid, Try entering your birthday again."
 		
 else:	# Check existing file for complete answers.
 	print "UBS_Answers.txt is in this directory."
