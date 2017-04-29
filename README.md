@@ -11,10 +11,14 @@ Fast Track will save you about 20 minutes at the blood drive or blood center.
 # Rationale for created this script:
 The questions become monotonous and some questions should only be asked once or not at all.
 
+# Dependencies:
+pip install requests
+
+# Done:
+Ask donor for First Name, Last Name, Male/Female, DOB.
+
 
 # ToDo:
-Ask user for First Name, Last Name, Male/Female, DOB.
-
 Download required reading material PDFs and compare them to the previous download.
 
 Alert the donor if the materials have changed.
