@@ -78,4 +78,7 @@ if not os.path.isfile('UBS_Answers.txt'):	# File missing
 		
 else:	# Check existing file for complete answers.
 	print "UBS_Answers.txt is in this directory."
-	
+	UBS_Answers = open('UBS_Answers.txt').readlines()
+	Donor_Name = UBS_Answers[0].strip().split(' ')
+	Gender = UBS_Answers[1].strip()
+	DOB = UBS_Answers[2].strip().split(', ')
