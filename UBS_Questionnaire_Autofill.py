@@ -24,6 +24,9 @@
 
 import time
 import os
+import urllib2
+from selenium import webdriver
+from bs4 import BeautifulSoup
 
 Donor_Name = []
 Gender = 1
@@ -82,3 +85,17 @@ else:	# Check existing file for complete answers.
 	Donor_Name = UBS_Answers[0].strip().split(' ')
 	Gender = UBS_Answers[1].strip()
 	DOB = UBS_Answers[2].strip().split(', ')
+
+###		Get UBS webpage and check material PDFs and compare them to the previous download. ###
+
+driver = webdriver.Chrome('/home/jason/Documents/Python Scripts/chromedriver')  # Define location of the chromedriver
+driver.get('http://bit.ly/AZCFasttrack');	# Open Starting webpage
+
+my_url = 'http://bit.ly/AZCFasttrack'
+html=urllib2.urlopen(my_url).read()
+soup = BeautifulSoup(html, "lxml")
+current_link = ''
+for link in soup.find_all('a'):
+	current_link = link.get('href')
+	if current_link.endswith('pdf'):
+		print('This is a pdf: ' + current_link)
